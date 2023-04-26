@@ -1,25 +1,25 @@
 package com.example.bookingnow.viewmodel
 
 import androidx.lifecycle.LiveData
-import com.example.bookingnow.model.RoomItem
+import androidx.room.Room
+import com.example.bookingnow.model.database.FavoriteItem
+import com.example.bookingnow.model.database.RoomItem
 
 interface FragmentListRepository {
 
     fun swipeToDelete(itemId: Int)
 
-    fun getItem(): RoomItem
+    fun getItem(itemId: Int): RoomItem
 
-    fun getListItem(): LiveData<List<RoomItem>>
+    fun addItem(item: RoomItem)
 
-    fun addItem()
-
-    fun addToFavorite(itemId: Int)
+    fun addToFavorite(item: FavoriteItem)
 
     fun addToHistory(itemId: Int)
 
     fun editItem(itemId: Int)
 
-    fun deleteItem(itemId: Int)
+    fun deleteItem(item: RoomItem)
 
     fun deleteFromFavoriteItem(itemId: Int)
 

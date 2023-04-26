@@ -59,41 +59,43 @@ class RegestrationActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(view: View) {
 
-        if (fieldsIsCorrect()) {
-            var status = "admin"
-            when (status) {
-                ADMIN_LOGGED -> startActivity(MainActivity.newIntentAdminLogged(this))
-                USER_LOGGED -> startActivity(MainActivity.newIntentUserLogged(this))
-                GUEST_LOGGED -> startActivity(MainActivity.newIntentGuestLogged(this))
-                else -> throw RuntimeException("Unknown user status from DB")
-            }
+//        if (fieldsIsCorrect()) {
+//
+//        }
+
+        var status = "admin"
+        when (status) {
+            ADMIN_LOGGED -> startActivity(MainActivity.newIntentAdminLogged(this))
+            USER_LOGGED -> startActivity(MainActivity.newIntentUserLogged(this))
+            GUEST_LOGGED -> startActivity(MainActivity.newIntentGuestLogged(this))
+            else -> throw RuntimeException("Unknown user status from DB")
         }
     }
 
 
     //функция проверки полей на допустимые значения
-    fun fieldsIsCorrect(): Boolean {
-        var name = parseName()
-        var phone = ""
-        var password = parsePassword()
-
-
-
-    }
-
-    //Блок приведения значений к нормальному виду
-
-    fun parseName(InputName: String): String {
-
-    }
-
-    fun parsePassword(InputPassword: String): String {
-
-    }
-
-    fun parseRole(InputRole: String): String{
-
-    }
+//    fun fieldsIsCorrect(): Boolean {
+//        var name = parseName()
+//        var phone = ""
+//        var password = parsePassword()
+//
+//
+//
+//    }
+//
+//    //Блок приведения значений к нормальному виду
+//
+//    fun parseName(InputName: String): String {
+//
+//    }
+//
+//    fun parsePassword(InputPassword: String): String {
+//
+//    }
+//
+//    fun parseRole(InputRole: String): String{
+//
+//    }
 
 
 

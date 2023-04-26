@@ -1,15 +1,15 @@
-package com.example.bookingnow.model
+package com.example.bookingnow.model.database
 
 import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.example.bookingnow.model.Consts.ROOM_TABLE_NAME
+import com.example.bookingnow.model.Consts
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-@Entity(tableName = ROOM_TABLE_NAME)
-data class RoomPhotoItem(
+@Entity(tableName = Consts.ROOM_TABLE_NAME)
+data class RoomItem(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
     @ColumnInfo(name = "RoomName")
