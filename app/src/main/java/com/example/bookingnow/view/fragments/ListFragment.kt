@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookingnow.R
 import com.example.bookingnow.model.database.RoomItem
+import com.example.bookingnow.model.database.UserItem
 import com.example.bookingnow.view.fragments.adapters.listfragment.ListFragmentAdapter
 import com.example.bookingnow.viewmodel.ListFragmentViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -39,20 +40,23 @@ class ListFragment : Fragment() {
 
         recAdapter = ListFragmentAdapter()
 
-        viewModel.RoomList.observe(viewLifecycleOwner){
+        viewModel.RoomList.observe(viewLifecycleOwner) {
             recAdapter.submitList(it)
         }
 
         buttonAdd = view.findViewById(R.id.AddItem)
-        buttonAdd.setOnClickListener{
-            val item = RoomItem(0,"1","2","3","4","1","1","10")
+        buttonAdd.setOnClickListener {
+            val item = RoomItem(0, "1", "2", "3", "4", "1", "1", "10")
             viewModel.addRoom(item)
+            val user = UserItem(0)
+            viewModel.testAddUser(user)
         }
 
         initRecyclerView(view)
 
     }
-    fun initRecyclerView(view: View){
+
+    fun initRecyclerView(view: View) {
 
         recView = view.findViewById(R.id.RecyclerRoom)
         recView.layoutManager = LinearLayoutManager(activity)
