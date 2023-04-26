@@ -6,7 +6,6 @@ import com.example.bookingnow.model.Consts.USER_TABLE_NAME
 
 @Entity(tableName = USER_TABLE_NAME)
 data class UserItem(
-    @PrimaryKey()
-    val id: Int,
-
+    @PrimaryKey(autoGenerate = true)
+    val id: Int
     )

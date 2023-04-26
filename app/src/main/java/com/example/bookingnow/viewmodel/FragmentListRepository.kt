@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Room
 import com.example.bookingnow.model.database.FavoriteItem
 import com.example.bookingnow.model.database.RoomItem
+import com.example.bookingnow.model.database.UserItem
 
 interface FragmentListRepository {
 
@@ -28,6 +29,8 @@ interface FragmentListRepository {
     fun bookingItem(itemId: Int)
 
     fun blockUser(userId: Int)
+
+    fun registerUser(item: UserItem)
 
     fun deleteUserComments(commentId: Int)
 

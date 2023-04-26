@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import com.example.bookingnow.model.database.FavoriteItem
 import com.example.bookingnow.model.database.RoomDao
 import com.example.bookingnow.model.database.RoomItem
+import com.example.bookingnow.model.database.UserItem
 import com.example.bookingnow.viewmodel.FragmentListRepository
 import kotlinx.coroutines.CoroutineScope
 
@@ -47,12 +48,17 @@ class DataBaseReposiotry(val roomDao: RoomDao) : FragmentListRepository {
         TODO("Not yet implemented")
     }
 
+
     override fun bookingItem(itemId: Int) {
         TODO("Not yet implemented")
     }
 
     override fun blockUser(userId: Int) {
         TODO("Not yet implemented")
+    }
+
+    override fun registerUser(item: UserItem) {
+        roomDao.registerUser(item)
     }
 
     override fun deleteUserComments(commentId: Int) {

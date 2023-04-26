@@ -33,7 +33,7 @@ abstract class RoomDataBase : RoomDatabase() {
 
         }
 
-        const val DATABASE_NAME = "RoomDataBase"
+        const val DATABASE_NAME = "RoomData"
     }
 
 }
