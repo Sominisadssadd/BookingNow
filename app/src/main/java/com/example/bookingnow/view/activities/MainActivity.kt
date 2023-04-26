@@ -22,8 +22,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         hideUITOOLSElements()
 
-
-
     }
 
     override fun onResume() {
