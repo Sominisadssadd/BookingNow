@@ -2,6 +2,7 @@ package com.example.bookingnow.model
 
 import androidx.lifecycle.LiveData
 import com.example.bookingnow.model.database.FavoriteItem
+import com.example.bookingnow.model.database.HistoryItem
 import com.example.bookingnow.model.database.RoomDao
 import com.example.bookingnow.model.database.RoomItem
 import com.example.bookingnow.model.database.UserItem
@@ -27,10 +28,11 @@ class DataBaseReposiotry(val roomDao: RoomDao) : FragmentListRepository {
         roomDao.addToFavorite(item)
     }
 
-
     override fun addToHistory(itemId: Int) {
         TODO("Not yet implemented")
     }
+
+
 
     override fun editItem(itemId: Int) {
         TODO("Not yet implemented")

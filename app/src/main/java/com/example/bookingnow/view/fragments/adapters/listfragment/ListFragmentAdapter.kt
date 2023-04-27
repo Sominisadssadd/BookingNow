@@ -1,6 +1,8 @@
 package com.example.bookingnow.view.fragments.adapters.listfragment
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.bookingnow.R
@@ -11,6 +13,7 @@ class ListFragmentAdapter() :
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListFragmentViewHolder {
+
         return ListFragmentViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.hotel_item, parent, false)
         )
@@ -20,15 +23,10 @@ class ListFragmentAdapter() :
         if (currentList.isNotEmpty()) {
             val currentItem = getItem(position)
 
-            with(holder) {
-                TvTitle.text = currentItem.nameOfRoom
-                TvIInfo.text = currentItem.ImportantInfo
-                TvDescription.text = currentItem.description
-                TvCount.text = currentItem.countOfRooms
-                TvCost.text = currentItem.cost
-                TvID.text = currentItem.id.toString()
-            }
+
         }
+
+        Log.d("SOM","bind")
 
     }
 

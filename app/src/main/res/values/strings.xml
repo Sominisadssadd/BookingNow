@@ -9,8 +9,12 @@
     <!--Bottom navigation Res-->
 
     <string name="home_menu">Home</string>
-    <string name="profile_menu">Profile</string>
+    <string name="profile_menu">Settings</string>
     <string name="favorite_menu">Favorite</string>
+
+    <string name="hederTitle">BookingNow</string>
+    <string name="headerTitle2">Find your..</string>
+    <string name="SearchViewHint">Просто напишите</string>
 
 
 </resources>
