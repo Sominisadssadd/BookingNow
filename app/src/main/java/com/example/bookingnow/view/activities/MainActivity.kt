@@ -20,13 +20,13 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        hideUITOOLSElements()
+
 
     }
 
     override fun onResume() {
         super.onResume()
-        hideUITOOLSElements()
+
     }
 
     override fun onStart() {
@@ -34,16 +34,10 @@ class MainActivity : AppCompatActivity() {
 
         val controller = findNavController(R.id.fragmentContainer)
         NavigationUI.setupWithNavController(binding.BottomNavigation, controller)
+
     }
 
-    fun hideUITOOLSElements() {
-        val windowInsetsController =
-            WindowCompat.getInsetsController(window, window.decorView)
-        windowInsetsController.systemBarsBehavior =
-            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
-        supportFragmentManager.beginTransaction()
-    }
+
 
     companion object {
         const val USER_STATUS = "status"

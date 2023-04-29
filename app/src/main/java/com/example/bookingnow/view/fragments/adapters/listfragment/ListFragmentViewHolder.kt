@@ -5,11 +5,11 @@ import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookingnow.R
+import com.google.android.material.card.MaterialCardView
 import org.w3c.dom.Text
 
 class ListFragmentViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
-
-
+    val card : MaterialCardView = view.findViewById(R.id.CardContent)
 
 }
