@@ -16,5 +16,15 @@
     <string name="headerTitle2">Find your..</string>
     <string name="SearchViewHint">Просто напишите</string>
 
+    <string name="Booking_room">ЗАБРОНИРОВАТЬ</string>
+
+    <string name="added_to_favorite_text">Добавлено в избранное</string>
+    <string name="remove_from_favorite_text">Удалено из избранного</string>
+    <string name="text_arrow_back">Назад</string>
+
+
+
+    <string name="long_text">a sd dasd asd d a sdd sa sadd as dad assssd dasd asd d a sdd sa sadd as dsd dasd asd d a sdd sa sadd as dsd dasd asd d a sdd sa sadd as dsd dasd asd d a sdd sa sadd as dsd dasd asd d a sdd sa sadd as dsd dasd asd d a sdd sa sadd as dsd dasd asd d a sdd sa sadd as dss</string>
+
 
 </resources>

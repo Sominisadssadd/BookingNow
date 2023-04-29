@@ -46,7 +46,7 @@ class RegestrationActivity : AppCompatActivity(), View.OnClickListener {
         }
         binding.ButtonLogin.setOnClickListener(this)
 
-        hideUITOOLSElements(true)
+
 
     }
 
@@ -103,14 +103,7 @@ class RegestrationActivity : AppCompatActivity(), View.OnClickListener {
 
 
 
-    fun hideUITOOLSElements(hideOrShow: Boolean) {
-        val windowInsetsController =
-            WindowCompat.getInsetsController(window, window.decorView)
-        windowInsetsController.systemBarsBehavior =
-            WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-        windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
-        supportFragmentManager.beginTransaction()
-    }
+
 
 }
 

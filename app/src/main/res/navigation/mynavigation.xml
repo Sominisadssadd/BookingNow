@@ -34,7 +34,7 @@
         android:id="@+id/roomDescriptionFragment"
         android:name="com.example.bookingnow.view.fragments.RoomDescriptionFragment"
         android:label="fragment_room_description"
-        tools:layout="@layout/fragment_room_description" >
+        tools:layout="@layout/room_fragment_description" >
         <action
             android:id="@+id/action_roomDescriptionFragment_to_checkFragment"
             app:destination="@id/checkFragment" />
