@@ -12,6 +12,7 @@ import kotlinx.coroutines.CoroutineScope
 class DataBaseReposiotry(val roomDao: RoomDao) : FragmentListRepository {
 
     val listOfRoom = roomDao.getListOfItems()
+
     override fun swipeToDelete(itemId: Int) {
         TODO("Not yet implemented")
     }

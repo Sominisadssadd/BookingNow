@@ -10,9 +10,20 @@ import androidx.room.Update
 @Dao
 interface RoomDao {
 
-    //entity определяет вставку в нужную таблицу
+
+    //RoomItem table
+    @Update
+    fun updateItem(item: RoomItem)
+
+    @Delete
+    fun deleteItem(item: RoomItem)
+
     @Insert(entity = RoomItem::class)
     fun addItem(item: RoomItem)
+
+    @Query("select * from Rooms group by id")
+    fun getListOfItems(): LiveData<List<RoomItem>>
+
 
     @Insert(entity = FavoriteItem::class)
     fun addToFavorite(item: FavoriteItem)
@@ -20,9 +31,15 @@ interface RoomDao {
     @Insert(entity = UserItem::class)
     fun registerUser(user: UserItem)
 
+    //RoomPhotoItem Table
+    @Query("select * from RoomImage order by RoomId")
+    fun getListOfPhotos(): LiveData<List<RoomPhotoItem>>
 
-    @Query("select * from Rooms group by id")
-    fun getListOfItems(): LiveData<List<RoomItem>>
+    @Insert(entity = RoomPhotoItem::class)
+    fun addImage(item: RoomPhotoItem)
+
+
+
 
     @Query(
         "select Rooms.id,RoomName,RoomImportantInfo,RoomDescription,RoomCount,RoomSpecial,RoomType," +
@@ -30,11 +47,7 @@ interface RoomDao {
     )
     fun getListOfFavorite(): LiveData<List<RoomItem>>
 
-    @Update
-    fun updateItem(item: RoomItem)
 
-    @Delete
-    fun deleteItem(item: RoomItem)
 
 
 }

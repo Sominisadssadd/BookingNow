@@ -5,9 +5,15 @@ import android.app.Dialog
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.*
+import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.example.bookingnow.R
+import com.example.bookingnow.model.database.RoomPhotoItem
+import com.example.bookingnow.view.fragments.adapters.roomdescriptionfragment.RoomDescriptionFragmentAdapter
+import com.example.bookingnow.viewmodel.RoomDescriptionViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -21,6 +27,13 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
     private lateinit var checkBoxAddFavorite: CheckBox
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var editTextDatePciker: EditText
+    private lateinit var recAdapter: RoomDescriptionFragmentAdapter
+    private lateinit var buttonBooking: Button
+
+    private val viewModel: RoomDescriptionViewModel by lazy {
+        ViewModelProvider(this)[RoomDescriptionViewModel::class.java]
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,10 +47,8 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
             WindowManager.LayoutParams.MATCH_PARENT
         )
 
-
         return view
     }
-
 
     //dialog на весь экран
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -67,10 +78,9 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         checkBoxAddFavorite = view.findViewById(R.id.checkBoxAddToFavorite)
         editTextDatePciker = view.findViewById(R.id.DatePickerEditText)
-
+        buttonBooking = view.findViewById(R.id.ButtonBooking)
 
         checkBoxAddFavorite.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
@@ -81,6 +91,27 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
         }
 
         editTextDatePciker.setOnClickListener(this)
+
+        recAdapter = RoomDescriptionFragmentAdapter()
+
+        viewModel.RoomImageList.observe(viewLifecycleOwner) {
+            //если ошибка со считыванием данных, то значит в таблице фоток тестовые данные
+            recAdapter.list = it
+            initRecyclerView(view)
+        }
+
+        buttonBooking.setOnClickListener {
+
+            val item = RoomPhotoItem(0, 2, "affas")
+            viewModel.addPhoto(item)
+        }
+    }
+
+
+    fun initRecyclerView(view: View) {
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.PhotoOfRoomReecyclerView)
+        recyclerView.adapter = recAdapter
 
     }
 
@@ -126,8 +157,5 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
                 showDatePcikerDialog()
             }
         }
-
     }
-
-
 }
