@@ -26,7 +26,8 @@
 
         <activity
             android:name=".view.activities.MainActivity"
-            android:windowSoftInputMode="adjustNothing">
+            android:windowSoftInputMode="adjustNothing"
+            >
 
         </activity>
     </application>
