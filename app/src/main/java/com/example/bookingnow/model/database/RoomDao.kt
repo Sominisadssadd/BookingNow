@@ -24,9 +24,16 @@ interface RoomDao {
     @Query("select * from Rooms group by id")
     fun getListOfItems(): LiveData<List<RoomItem>>
 
-
+    //favorite table
     @Insert(entity = FavoriteItem::class)
     fun addToFavorite(item: FavoriteItem)
+
+    @Query(
+        "select Rooms.id,RoomName,RoomImportantInfo,RoomDescription,RoomCount,RoomSpecial,RoomType," +
+                "RoomCost from Rooms inner join FavoriteRooms where Rooms.id = FavoriteRooms.RoomId "
+    )
+    fun getListOfFavorite(): LiveData<List<RoomItem>>
+
 
     @Insert(entity = UserItem::class)
     fun registerUser(user: UserItem)
@@ -37,17 +44,6 @@ interface RoomDao {
 
     @Insert(entity = RoomPhotoItem::class)
     fun addImage(item: RoomPhotoItem)
-
-
-
-
-    @Query(
-        "select Rooms.id,RoomName,RoomImportantInfo,RoomDescription,RoomCount,RoomSpecial,RoomType," +
-                "RoomCost from Rooms inner join FavoriteRooms where Rooms.id = FavoriteRooms.RoomId "
-    )
-    fun getListOfFavorite(): LiveData<List<RoomItem>>
-
-
 
 
 }

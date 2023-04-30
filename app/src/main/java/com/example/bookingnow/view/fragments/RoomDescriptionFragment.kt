@@ -93,7 +93,6 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
         editTextDatePciker.setOnClickListener(this)
 
         recAdapter = RoomDescriptionFragmentAdapter()
-
         viewModel.RoomImageList.observe(viewLifecycleOwner) {
             //если ошибка со считыванием данных, то значит в таблице фоток тестовые данные
             recAdapter.list = it
@@ -102,8 +101,6 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
 
         buttonBooking.setOnClickListener {
 
-            val item = RoomPhotoItem(0, 2, "affas")
-            viewModel.addPhoto(item)
         }
     }
 
@@ -149,7 +146,6 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
         datePicker.show()
 
     }
-
 
     override fun onClick(view: View) {
         when (view.id) {
