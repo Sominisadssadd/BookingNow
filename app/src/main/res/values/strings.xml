@@ -23,6 +23,13 @@
     <string name="remove_from_favorite_text">Удалено из избранного</string>
     <string name="text_arrow_back">Назад</string>
 
+    <string name="profile_text">Мой профиль</string>
+
+    <string name="name_hint">Имя</string>
+    <string name="address_hint">E-mail</string>
+    <string name="phone_hint">Телефон</string>
+    <string name="password_hint">Пароль</string>
+    <string name="button_confirm">Подтвердить изменения</string>
 
 
     <string name="long_text">a sd dasd asd d a sdd sa sadd as dad assssd dasd asd d a sdd sa sadd as dsd dasd asd d a sdd sa sadd as dsd dasd asd d a sdd sa sadd as dsd dasd asd d a sdd sa sadd as dsd dasd asd d a sdd sa sadd as dsd dasd asd d a sdd sa sadd as dsd dasd asd d a sdd sa sadd as dss</string>

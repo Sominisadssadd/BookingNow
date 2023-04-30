@@ -24,10 +24,6 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
 
     override fun onStart() {
         super.onStart()

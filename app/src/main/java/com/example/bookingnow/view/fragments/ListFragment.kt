@@ -23,9 +23,10 @@ import com.example.bookingnow.view.fragments.adapters.listfragment.TopRecyclerAd
 import com.example.bookingnow.viewmodel.ListFragmentViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import de.hdodenhof.circleimageview.CircleImageView
 
 
-class ListFragment : Fragment(), SearchView.OnQueryTextListener {
+class ListFragment : Fragment(), SearchView.OnQueryTextListener, View.OnClickListener {
 
 
     private lateinit var recAdapter: ListFragmentAdapter
@@ -35,6 +36,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     private lateinit var bottomNavigationBar: BottomNavigationView
     private lateinit var searchView: SearchView
     private lateinit var motionLayout: MotionLayout
+    private lateinit var circleIamge: CircleImageView
 
     val viewModel: ListFragmentViewModel by lazy {
         ViewModelProvider(this)[ListFragmentViewModel::class.java]
@@ -54,6 +56,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
         searchView = view.findViewById(R.id.SearcViewListFragment)
         motionLayout = view.findViewById(R.id.MotionLayoutListFragment)
+        circleIamge = view.findViewById(R.id.ProfileIconInListFragment)
         recAdapter = ListFragmentAdapter()
         recAdapterTop = TopRecyclerAdapter()
         bottomNavigationBar = requireActivity().findViewById(R.id.BottomNavigation)
@@ -67,6 +70,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         initRecyclerView(view)
 
         searchView.setOnQueryTextListener(this)
+        circleIamge.setOnClickListener(this)
 
     }
 
@@ -105,14 +109,22 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        if(newText?.length!! > 0){
+        if (newText?.length!! > 0) {
             //если длинна введенного текста больше 1 символа, то срабатывает анимация
             motionLayout.transitionToState(R.id.end)
-        }else{
+        } else {
             motionLayout.transitionToState(R.id.start)
         }
 
         return true
+    }
+
+    override fun onClick(view: View) {
+        when (view.id) {
+            R.id.ProfileIconInListFragment -> {
+                findNavController().navigate(R.id.action_listFragment_to_profileFragment)
+            }
+        }
     }
 
 

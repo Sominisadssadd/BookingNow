@@ -47,5 +47,16 @@
         <action
             android:id="@+id/action_listFragment_to_roomDescriptionFragment"
             app:destination="@id/roomDescriptionFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_servicesFragment"
+            app:destination="@id/servicesFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/servicesFragment"
+        android:name="com.example.bookingnow.ServicesFragment"
+        android:label="fragment_services"
+        tools:layout="@layout/fragment_services" />
 </navigation>
