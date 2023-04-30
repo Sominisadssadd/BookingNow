@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.widget.SearchView
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -23,14 +25,16 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
 
-    lateinit var recAdapter: ListFragmentAdapter
-    lateinit var recViewMain: RecyclerView
-    lateinit var recViewTop: RecyclerView
-    lateinit var recAdapterTop: TopRecyclerAdapter
-    lateinit var bottomNavigationBar: BottomNavigationView
+    private lateinit var recAdapter: ListFragmentAdapter
+    private lateinit var recViewMain: RecyclerView
+    private lateinit var recViewTop: RecyclerView
+    private lateinit var recAdapterTop: TopRecyclerAdapter
+    private lateinit var bottomNavigationBar: BottomNavigationView
+    private lateinit var searchView: SearchView
+    private lateinit var motionLayout: MotionLayout
 
     val viewModel: ListFragmentViewModel by lazy {
         ViewModelProvider(this)[ListFragmentViewModel::class.java]
@@ -48,15 +52,22 @@ class ListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        searchView = view.findViewById(R.id.SearcViewListFragment)
+        motionLayout = view.findViewById(R.id.MotionLayoutListFragment)
         recAdapter = ListFragmentAdapter()
         recAdapterTop = TopRecyclerAdapter()
+        bottomNavigationBar = requireActivity().findViewById(R.id.BottomNavigation)
 
         viewModel.RoomList.observe(viewLifecycleOwner) {
+            //ИЗМЕНИТЬ RECADAPTEERTOP на максимальное колличество элементов 4< i <6
             recAdapter.submitList(it)
             recAdapterTop.submitList(it)
         }
-        bottomNavigationBar = requireActivity().findViewById(R.id.BottomNavigation)
+
         initRecyclerView(view)
+
+        searchView.setOnQueryTextListener(this)
+
     }
 
     private fun initRecyclerView(view: View) {
@@ -82,10 +93,26 @@ class ListFragment : Fragment() {
 //            bottomNavigationBar.visibility = View.INVISIBLE
 
             val bot = RoomDescriptionFragment()
-            bot.show(requireActivity().supportFragmentManager,"justTAG")
+            bot.show(requireActivity().supportFragmentManager, "justTAG")
 
 
         }
+    }
+
+    //При нажатии на кнопку найти  срабатывает этот метод
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        TODO("Not yet implemented")
+    }
+
+    override fun onQueryTextChange(newText: String?): Boolean {
+        if(newText?.length!! > 0){
+            //если длинна введенного текста больше 1 символа, то срабатывает анимация
+            motionLayout.transitionToState(R.id.end)
+        }else{
+            motionLayout.transitionToState(R.id.start)
+        }
+
+        return true
     }
 
 

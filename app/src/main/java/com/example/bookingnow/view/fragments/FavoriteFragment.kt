@@ -41,16 +41,6 @@ class FavoriteFragment : Fragment() {
             recViewAdapter.submitList(it)
         }
 
-        buttonAdd = view.findViewById(R.id.AddItemFavorite)
-        buttonAdd.setOnClickListener {
-
-            //первичный ключ, если autoincrement не может быть пустым
-            var item = FavoriteItem(0, 1, 3)
-            viewModel.addToFavorite(item)
-        }
-
-
-
         initRecyclerView(view)
     }
 

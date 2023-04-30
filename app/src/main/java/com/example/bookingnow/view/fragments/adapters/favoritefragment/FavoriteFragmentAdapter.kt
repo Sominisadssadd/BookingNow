@@ -11,21 +11,13 @@ class FavoriteFragmentAdapter :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteViewHolder {
         return FavoriteViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.favorite_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.hotel_item, parent, false)
         )
     }
 
     override fun onBindViewHolder(holder: FavoriteViewHolder, position: Int) {
         val item = getItem(position)
 
-        with(holder){
-            TvTitle.text = item.nameOfRoom
-            TvIInfo.text = item.ImportantInfo
-            TvDescription.text = item.description
-            TvCount.text = item.countOfRooms
-            TvCost.text = item.cost
-            TvID.text = item.id.toString()
-        }
 
     }
 }
