@@ -16,7 +16,7 @@
         app:showAsAction="ifRoom" />
 
     <item
-        android:id="@+id/profileFragment"
+        android:id="@+id/servicesFragment"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="@string/profile_menu"
         app:showAsAction="ifRoom" />
