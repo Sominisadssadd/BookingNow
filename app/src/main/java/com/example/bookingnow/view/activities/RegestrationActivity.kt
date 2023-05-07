@@ -1,9 +1,11 @@
 package com.example.bookingnow.view.activities
 
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
 import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.ContactsContract.DisplayPhoto
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,14 +13,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
+import android.Manifest
+import androidx.core.app.ActivityCompat
 import com.example.bookingnow.R
 import com.example.bookingnow.databinding.ActivityRegestrationBinding
+import com.example.bookingnow.model.Consts
 import com.example.bookingnow.view.activities.MainActivity.Companion.ADMIN_LOGGED
 import com.example.bookingnow.view.activities.MainActivity.Companion.GUEST_LOGGED
 import com.example.bookingnow.view.activities.MainActivity.Companion.USER_LOGGED
@@ -29,6 +35,8 @@ class RegestrationActivity : AppCompatActivity(), View.OnClickListener {
 
 
     lateinit var binding: ActivityRegestrationBinding
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,6 +55,10 @@ class RegestrationActivity : AppCompatActivity(), View.OnClickListener {
         binding.ButtonLogin.setOnClickListener(this)
 
 
+        //Запрашиваем разрешение на возможность считывать файлы
+        ActivityCompat.requestPermissions(this,
+            arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            Consts.REQUEST_CODE)
 
     }
 

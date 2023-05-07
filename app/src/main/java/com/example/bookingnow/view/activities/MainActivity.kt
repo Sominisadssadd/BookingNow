@@ -1,9 +1,14 @@
 package com.example.bookingnow.view.activities
 
+import android.Manifest.permission.READ_EXTERNAL_STORAGE
+import android.app.appsearch.SetSchemaRequest.READ_EXTERNAL_STORAGE
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -11,6 +16,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.example.bookingnow.R
 import com.example.bookingnow.databinding.ActivityMainBinding
+import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,9 +31,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
     override fun onStart() {
         super.onStart()
-
         val controller = findNavController(R.id.fragmentContainer)
         NavigationUI.setupWithNavController(binding.BottomNavigation, controller)
 

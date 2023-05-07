@@ -53,10 +53,18 @@
         <action
             android:id="@+id/action_listFragment_to_servicesFragment"
             app:destination="@id/servicesFragment" />
+        <action
+            android:id="@+id/action_listFragment_to_addRoomFragment"
+            app:destination="@id/addRoomFragment" />
     </fragment>
     <fragment
         android:id="@+id/servicesFragment"
         android:name="com.example.bookingnow.ServicesFragment"
         android:label="fragment_services"
         tools:layout="@layout/fragment_services" />
+    <fragment
+        android:id="@+id/addRoomFragment"
+        android:name="com.example.bookingnow.view.fragments.AddRoomFragment"
+        android:label="fragment_add_room"
+        tools:layout="@layout/fragment_add_room" />
 </navigation>

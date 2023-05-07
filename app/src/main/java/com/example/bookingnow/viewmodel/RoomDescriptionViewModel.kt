@@ -13,18 +13,23 @@ import kotlinx.coroutines.launch
 class RoomDescriptionViewModel(context: Application) : AndroidViewModel(context) {
 
     val dao: RoomDao
-    val RoomImageList: LiveData<List<RoomPhotoItem>>
 
     init {
         val db = RoomDataBase.getDataBase(context)
         dao = db.DaoRoom()
-        RoomImageList = dao.getListOfPhotos()
+
+
     }
 
     fun addPhoto(item: RoomPhotoItem) {
         viewModelScope.launch(Dispatchers.IO) {
             dao.addImage(item)
         }
+    }
+
+    fun getListOfImage(RoomItemId: Int): LiveData<List<RoomPhotoItem>> {
+        val RoomImageList = dao.getListOfPhotos(RoomItemId)
+        return RoomImageList as LiveData<List<RoomPhotoItem>>
     }
 
 

@@ -24,12 +24,15 @@ interface RoomDao {
     @Query("select * from Rooms group by id")
     fun getListOfItems(): LiveData<List<RoomItem>>
 
+    @Query("select * from Rooms where id > 3 limit 5")
+    fun getListOfTopItems(): LiveData<List<RoomItem>>
+
     //favorite table
     @Insert(entity = FavoriteItem::class)
     fun addToFavorite(item: FavoriteItem)
 
     @Query(
-        "select Rooms.id,RoomName,RoomImportantInfo,RoomDescription,RoomCount,RoomSpecial,RoomType," +
+        "select Rooms.id,RoomName,RoomImportantInfo,RoomDescription,RoomCount,RoomSpecial,RoomType,ImageTitle," +
                 "RoomCost from Rooms inner join FavoriteRooms where Rooms.id = FavoriteRooms.RoomId "
     )
     fun getListOfFavorite(): LiveData<List<RoomItem>>
@@ -39,8 +42,8 @@ interface RoomDao {
     fun registerUser(user: UserItem)
 
     //RoomPhotoItem Table
-    @Query("select * from RoomImage order by RoomId")
-    fun getListOfPhotos(): LiveData<List<RoomPhotoItem>>
+    @Query("select * from RoomImage where RoomId = :roomItemId")
+    fun getListOfPhotos(roomItemId: Int): LiveData<List<RoomPhotoItem>>
 
     @Insert(entity = RoomPhotoItem::class)
     fun addImage(item: RoomPhotoItem)
