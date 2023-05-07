@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.view.WindowCompat
@@ -16,6 +17,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookingnow.R
+import com.example.bookingnow.model.Consts.ROOM_DESCRIPTION_FRAGMENT
 import com.example.bookingnow.model.database.RoomItem
 import com.example.bookingnow.model.database.UserItem
 import com.example.bookingnow.view.fragments.adapters.listfragment.ListFragmentAdapter
@@ -37,6 +39,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener, View.OnClickLis
     private lateinit var searchView: SearchView
     private lateinit var motionLayout: MotionLayout
     private lateinit var circleIamge: CircleImageView
+    private lateinit var buttonAdd: FloatingActionButton
 
     val viewModel: ListFragmentViewModel by lazy {
         ViewModelProvider(this)[ListFragmentViewModel::class.java]
@@ -57,20 +60,25 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener, View.OnClickLis
         searchView = view.findViewById(R.id.SearcViewListFragment)
         motionLayout = view.findViewById(R.id.MotionLayoutListFragment)
         circleIamge = view.findViewById(R.id.ProfileIconInListFragment)
-        recAdapter = ListFragmentAdapter()
+        recAdapter = ListFragmentAdapter(requireContext())
         recAdapterTop = TopRecyclerAdapter()
         bottomNavigationBar = requireActivity().findViewById(R.id.BottomNavigation)
+        buttonAdd = view.findViewById(R.id.ButtonAddFromList)
 
         viewModel.RoomList.observe(viewLifecycleOwner) {
-            //ИЗМЕНИТЬ RECADAPTEERTOP на максимальное колличество элементов 4< i <6
             recAdapter.submitList(it)
+        }
+
+        viewModel.TopRoomList.observe(viewLifecycleOwner) {
             recAdapterTop.submitList(it)
         }
+
 
         initRecyclerView(view)
 
         searchView.setOnQueryTextListener(this)
         circleIamge.setOnClickListener(this)
+        buttonAdd.setOnClickListener(this)
 
     }
 
@@ -93,13 +101,11 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener, View.OnClickLis
 
     private fun onItemClickListenerInMain() {
         recAdapter.onItemClickListener = {
-//            findNavController().navigate(R.id.action_listFragment_to_roomDescriptionFragment)
-//            bottomNavigationBar.visibility = View.INVISIBLE
-
-            val bot = RoomDescriptionFragment()
-            bot.show(requireActivity().supportFragmentManager, "justTAG")
-
-
+            val descriptionFragmentInstance = RoomDescriptionFragment.newInstanceAddRoomItem(it)
+            descriptionFragmentInstance.show(
+                requireActivity().supportFragmentManager,
+                ROOM_DESCRIPTION_FRAGMENT
+            )
         }
     }
 
@@ -124,6 +130,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener, View.OnClickLis
             R.id.ProfileIconInListFragment -> {
                 findNavController().navigate(R.id.action_listFragment_to_profileFragment)
             }
+            R.id.ButtonAddFromList -> findNavController().navigate(R.id.action_listFragment_to_addRoomFragment)
         }
     }
 

@@ -5,12 +5,13 @@ import android.app.Dialog
 import android.icu.util.Calendar
 import android.os.Bundle
 import android.view.*
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
+import android.widget.*
+import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.example.bookingnow.R
+import com.example.bookingnow.model.Consts.ROOM_ITEM_ARGUMENT
+import com.example.bookingnow.model.database.RoomItem
 import com.example.bookingnow.model.database.RoomPhotoItem
 import com.example.bookingnow.view.fragments.adapters.roomdescriptionfragment.RoomDescriptionFragmentAdapter
 import com.example.bookingnow.viewmodel.RoomDescriptionViewModel
@@ -19,6 +20,8 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
+import org.w3c.dom.Text
 import java.lang.RuntimeException
 
 
@@ -26,9 +29,19 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
 
     private lateinit var checkBoxAddFavorite: CheckBox
     private lateinit var bottomNavigationView: BottomNavigationView
-    private lateinit var editTextDatePciker: EditText
-    private lateinit var recAdapter: RoomDescriptionFragmentAdapter
     private lateinit var buttonBooking: Button
+    private lateinit var roomDescriptionAdapter: RoomDescriptionFragmentAdapter
+    
+    private lateinit var headerImageView: ImageView
+    private lateinit var costTextView: TextView
+    private lateinit var titleTextView: TextView
+    private lateinit var importantInfoTextView: TextView
+    private lateinit var descriptionTextView: TextView
+    private lateinit var typeOfRoomTextView: TextView
+    private lateinit var countOfRoomTextView: TextView
+    private lateinit var specialOfRoomTextView: TextView
+
+    private lateinit var recyclerView: RecyclerView
 
     private val viewModel: RoomDescriptionViewModel by lazy {
         ViewModelProvider(this)[RoomDescriptionViewModel::class.java]
@@ -50,6 +63,27 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
         return view
     }
 
+    private fun getArgsAndInitViews() {
+
+        var roomItem = arguments?.getSerializable(ROOM_ITEM_ARGUMENT) as RoomItem
+
+
+        Picasso.get().load(roomItem.imageTitle).into(headerImageView)
+        costTextView.text = roomItem.cost
+        titleTextView.text = roomItem.nameOfRoom
+        importantInfoTextView.text = roomItem.ImportantInfo
+        descriptionTextView.text = roomItem.description
+        typeOfRoomTextView.text = roomItem.typeOfRoom
+        countOfRoomTextView.text = roomItem.countOfRooms
+        specialOfRoomTextView.text = roomItem.specialOfBooking
+
+        viewModel.getListOfImage(roomItem.id).observe(viewLifecycleOwner) {
+            roomDescriptionAdapter = RoomDescriptionFragmentAdapter(it)
+            recyclerView.adapter = roomDescriptionAdapter
+        }
+
+    }
+
     //dialog на весь экран
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = BottomSheetDialog(requireContext(), theme)
@@ -68,6 +102,7 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
         return dialog
     }
 
+
     private fun setupFullHeight(bottomSheet: View) {
         val layoutParams = bottomSheet.layoutParams
         layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
@@ -79,8 +114,21 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
         super.onViewCreated(view, savedInstanceState)
 
         checkBoxAddFavorite = view.findViewById(R.id.checkBoxAddToFavorite)
-        editTextDatePciker = view.findViewById(R.id.DatePickerEditText)
         buttonBooking = view.findViewById(R.id.ButtonBooking)
+        headerImageView = view.findViewById(R.id.HeaderImageView)
+        costTextView = view.findViewById(R.id.TextViewCostOfRoomDescription)
+        titleTextView = view.findViewById(R.id.TextViewHeaderOfRoomDescription)
+        importantInfoTextView = view.findViewById(R.id.textViewImportantInfoOFRoomDescription)
+        descriptionTextView = view.findViewById(R.id.TextViewRoomDescription)
+        typeOfRoomTextView = view.findViewById(R.id.TextViewTypeOfRoom)
+        countOfRoomTextView = view.findViewById(R.id.TextViewCountOfRoom)
+        specialOfRoomTextView = view.findViewById(R.id.TextViewSpecialOfRoomDescription)
+        recyclerView = view.findViewById<RecyclerView>(R.id.PhotoOfRoomReecyclerView)
+
+
+
+
+
 
         checkBoxAddFavorite.setOnCheckedChangeListener { buttonView, isChecked ->
             if (isChecked) {
@@ -90,27 +138,16 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
             }
         }
 
-        editTextDatePciker.setOnClickListener(this)
 
-        recAdapter = RoomDescriptionFragmentAdapter()
-        viewModel.RoomImageList.observe(viewLifecycleOwner) {
-            //если ошибка со считыванием данных, то значит в таблице фоток тестовые данные
-            recAdapter.list = it
-            initRecyclerView(view)
-        }
+        getArgsAndInitViews()
 
         buttonBooking.setOnClickListener {
 
         }
+
+
     }
 
-
-    fun initRecyclerView(view: View) {
-
-        val recyclerView = view.findViewById<RecyclerView>(R.id.PhotoOfRoomReecyclerView)
-        recyclerView.adapter = recAdapter
-
-    }
 
     override fun onDestroy() {
         super.onDestroy()
@@ -131,26 +168,39 @@ class RoomDescriptionFragment : BottomSheetDialogFragment(), View.OnClickListene
 
     }
 
-    private fun showDatePcikerDialog() {
-
-        val calendar = Calendar.getInstance()
-        val datePicker = DatePickerDialog(
-            context?.applicationContext ?: throw RuntimeException("DatePickerDialog error"),
-            { _, year, moth, day ->
-                editTextDatePciker.setText(String.format("%d-%02d-%02d", year, moth, day))
-            },
-            calendar.get(Calendar.YEAR),
-            calendar.get(Calendar.MONTH),
-            calendar.get(Calendar.DAY_OF_MONTH)
-        )
-        datePicker.show()
-
-    }
+//    private fun showDatePcikerDialog() {
+//
+//        val calendar = Calendar.getInstance()
+//        val datePicker = DatePickerDialog(
+//            context?.applicationContext ?: throw RuntimeException("DatePickerDialog error"),
+//            { _, year, moth, day ->
+//                editTextDatePciker.setText(String.format("%d-%02d-%02d", year, moth, day))
+//            },
+//            calendar.get(Calendar.YEAR),
+//            calendar.get(Calendar.MONTH),
+//            calendar.get(Calendar.DAY_OF_MONTH)
+//        )
+//        datePicker.show()
+//
+//    }
 
     override fun onClick(view: View) {
         when (view.id) {
-            R.id.DatePickerEditText -> {
-                showDatePcikerDialog()
+//            R.id.DatePickerEditText -> {
+//                showDatePcikerDialog()
+//            }
+
+        }
+    }
+
+
+    companion object {
+
+        fun newInstanceAddRoomItem(item: RoomItem): RoomDescriptionFragment {
+            return RoomDescriptionFragment().apply {
+                arguments = Bundle().apply {
+                    putSerializable(ROOM_ITEM_ARGUMENT, item)
+                }
             }
         }
     }

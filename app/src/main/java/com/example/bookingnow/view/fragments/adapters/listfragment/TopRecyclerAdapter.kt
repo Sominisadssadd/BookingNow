@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.bookingnow.R
 import com.example.bookingnow.model.database.RoomItem
+import com.squareup.picasso.Picasso
 
 class TopRecyclerAdapter : ListAdapter<RoomItem, TopRecyclerViewHolder>(DiffUtliBallBackItemTop()) {
 
@@ -20,10 +21,11 @@ class TopRecyclerAdapter : ListAdapter<RoomItem, TopRecyclerViewHolder>(DiffUtli
     override fun onBindViewHolder(holder: TopRecyclerViewHolder, position: Int) {
         if (currentList.isNotEmpty()) {
             val currentItem = getItem(position)
-
-
+            holder.apply {
+                Picasso.get().load(currentItem.imageTitle).into(image)
+                title.text = currentItem.nameOfRoom
+                type.text = currentItem.typeOfRoom
+            }
         }
-
-        Log.d("SOM","bind")
     }
 }

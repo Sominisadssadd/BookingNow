@@ -6,6 +6,7 @@
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/drawable/active_favorie.xml" value="0.125" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/drawable/add_remove_from_favorite.xml" value="0.163" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/drawable/arrow_back.xml" value="0.163" />
+        <entry key="..\:/Users/Public/BookingNow/app/src/main/res/drawable/bacground_of_cost_of_room.xml" value="0.108" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/drawable/background_for_card.xml" value="0.1915" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/drawable/booking_button_backgorund.xml" value="0.163" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/drawable/buttonshape.xml" value="0.1905" />
@@ -21,19 +22,20 @@
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/activity_regestration.xml" value="0.24010416666666667" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/favorite_item.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/fragment_add_room.xml" value="0.264" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/fragment_auth_reg.xml" value="0.264" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/fragment_check.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/fragment_favorite.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/fragment_filter.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/fragment_history.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/fragment_list.xml" value="0.264" />
-        <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/fragment_profile.xml" value="0.264" />
+        <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/fragment_profile.xml" value="0.2" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/fragment_room_description.xml" value="0.2" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/fragment_services.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/hotel_item.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/item_of_photo_description.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/itemik.xml" value="0.25052083333333336" />
-        <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/room_fragment_description.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/room_fragment_description.xml" value="0.25" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/layout/top_hotel_item.xml" value="0.264" />
         <entry key="..\:/Users/Public/BookingNow/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25416666666666665" />
       </map>

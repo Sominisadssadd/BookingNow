@@ -2,14 +2,21 @@
 <androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MotionLayoutListFragment"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/MotionLayoutListFragment"
     android:background="#EFEDED"
     app:layoutDescription="@xml/fragment_list_scene"
     tools:context=".view.fragments.ListFragment">
 
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/ButtonAddFromList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
@@ -50,11 +57,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/TopOfRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginBottom="20dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toTopOf="@id/RecyclerViewMain"
@@ -64,12 +73,10 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerViewMain"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="230dp"
         android:layout_marginBottom="65dp"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/hotel_item" />
-
-
 
 
 </androidx.constraintlayout.motion.widget.MotionLayout>

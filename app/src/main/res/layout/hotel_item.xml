@@ -24,6 +24,7 @@
                 app:cardCornerRadius="10dp">
 
                 <ImageView
+                    android:id="@+id/ImageViewOfHotelItem"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -41,6 +42,7 @@
 
 
                 <TextView
+                    android:id="@+id/TextViewTitleOfHotelItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -50,6 +52,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/TextViewTypeOfHotelItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="left"
@@ -58,6 +61,7 @@
                     android:textSize="12sp" />
 
                 <TextView
+                    android:id="@+id/TextViewCostOfHotelItem"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/arialroundedmtbold"

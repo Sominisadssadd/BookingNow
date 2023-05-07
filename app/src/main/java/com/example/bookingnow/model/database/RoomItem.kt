@@ -6,8 +6,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.bookingnow.model.Consts
 import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
-@Parcelize
+
 @Entity(tableName = Consts.ROOM_TABLE_NAME)
 data class RoomItem(
     @PrimaryKey(autoGenerate = true)
@@ -22,9 +23,11 @@ data class RoomItem(
     val countOfRooms: String,
     @ColumnInfo(name = "RoomSpecial")
     val specialOfBooking: String,
+    @ColumnInfo(name = "ImageTitle")
+    val imageTitle: String,
     @ColumnInfo(name = "RoomType")
     val typeOfRoom: String,
     @ColumnInfo(name = "RoomCost")
     val cost: String
 
-) : Parcelable
+) : Serializable
