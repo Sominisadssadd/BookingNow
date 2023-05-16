@@ -1,5 +1,7 @@
 package com.example.bookingnow.view.fragments
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.DisplayMetrics
 import androidx.fragment.app.Fragment
@@ -7,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.constraintlayout.motion.widget.MotionLayout
 import androidx.core.view.WindowCompat
@@ -23,8 +26,11 @@ import com.example.bookingnow.model.database.UserItem
 import com.example.bookingnow.view.fragments.adapters.listfragment.ListFragmentAdapter
 import com.example.bookingnow.view.fragments.adapters.listfragment.TopRecyclerAdapter
 import com.example.bookingnow.viewmodel.ListFragmentViewModel
+import com.example.bookingnow.viewmodel.RegisterActivityViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
 
@@ -41,14 +47,21 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener, View.OnClickLis
     private lateinit var circleIamge: CircleImageView
     private lateinit var buttonAdd: FloatingActionButton
 
+    var sharedPref: SharedPreferences?=null
+
+
     val viewModel: ListFragmentViewModel by lazy {
         ViewModelProvider(this)[ListFragmentViewModel::class.java]
+    }
+    val regViewModel: RegisterActivityViewModel by lazy {
+        ViewModelProvider(this)[RegisterActivityViewModel::class.java]
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        sharedPref = activity?.getSharedPreferences("user_preferences", Context.MODE_PRIVATE)
         return inflater.inflate(R.layout.fragment_list, container, false)
 
 
@@ -72,6 +85,17 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener, View.OnClickLis
         viewModel.TopRoomList.observe(viewLifecycleOwner) {
             recAdapterTop.submitList(it)
         }
+
+
+        regViewModel.listOfUsers.observe(viewLifecycleOwner){
+            it.forEach{user->
+                if(user.id == sharedPref!!.getInt("user_id", 0)){
+                    Picasso.get().load(user.photo).into(circleIamge)
+                }
+            }
+        }
+
+
 
 
         initRecyclerView(view)
