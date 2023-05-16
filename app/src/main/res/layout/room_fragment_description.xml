@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="7dp"
             android:fontFamily="@font/ferdinandfontregular"
-            android:text="Фотогарфии"
+            android:text="Фотографии"
             android:textColor="#4C4C4C"
             android:textSize="18sp"
             app:layout_constraintBottom_toTopOf="@id/PhotoOfRoomReecyclerView"

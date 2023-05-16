@@ -38,8 +38,13 @@ interface RoomDao {
     fun getListOfFavorite(): LiveData<List<RoomItem>>
 
 
+    //users
     @Insert(entity = UserItem::class)
     fun registerUser(user: UserItem)
+
+    @Query("select * from Users")
+    fun getListOfUsers(): LiveData<List<UserItem>>
+
 
     //RoomPhotoItem Table
     @Query("select * from RoomImage where RoomId = :roomItemId")

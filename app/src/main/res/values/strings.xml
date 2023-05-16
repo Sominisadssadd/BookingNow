@@ -45,4 +45,9 @@
     <string name="cost_of_room_text">Стоимость</string>
 
 
+    <string name="first_visit_text">В первый раз?</string>
+    <string name="continue_like_guest">Продолжить как гость ></string>
+
+
+
 </resources>
