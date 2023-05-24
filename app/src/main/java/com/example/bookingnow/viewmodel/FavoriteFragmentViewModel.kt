@@ -15,12 +15,12 @@ class FavoriteFragmentViewModel(context: Application) : AndroidViewModel(context
 
     //изменить модификатор листа, чтоб мы могли получать его только из функции, а не из листа и менять его
     var daoFavorite: RoomDao
-    var listOfFavorite: LiveData<List<RoomItem>>
+
 
     init {
         val db = RoomDataBase.getDataBase(context)
         daoFavorite = db.DaoRoom()
-        listOfFavorite = daoFavorite.getListOfFavorite()
+
     }
 
     //операции с базой данных только в фоновом потоке
@@ -30,6 +30,18 @@ class FavoriteFragmentViewModel(context: Application) : AndroidViewModel(context
         }
 
     }
+
+    fun removeFromFavorite(item: FavoriteItem){
+        viewModelScope.launch(Dispatchers.IO){
+            daoFavorite.deleteFromFavorite(item)
+        }
+    }
+
+    fun listOfFavorite(userId: Int): LiveData<List<RoomItem>> {
+        var listOfFavorite: LiveData<List<RoomItem>> = daoFavorite.getListOfFavorite(userId);
+        return listOfFavorite;
+    }
+
 
 
 }
