@@ -26,7 +26,6 @@ class ListFragmentViewModel(context: Application) : AndroidViewModel(context) {
         viewModelScope.launch(Dispatchers.IO) {
             daoRoom.addItem(item)
         }
-
     }
 
     fun addImagesOfRoom(item: RoomPhotoItem) {

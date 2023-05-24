@@ -31,11 +31,14 @@ interface RoomDao {
     @Insert(entity = FavoriteItem::class)
     fun addToFavorite(item: FavoriteItem)
 
+    @Delete(entity = FavoriteItem::class)
+    fun deleteFromFavorite(item: FavoriteItem)
+
     @Query(
         "select Rooms.id,RoomName,RoomImportantInfo,RoomDescription,RoomCount,RoomSpecial,RoomType,ImageTitle," +
-                "RoomCost from Rooms inner join FavoriteRooms where Rooms.id = FavoriteRooms.RoomId "
+                "RoomCost from Rooms inner join FavoriteRooms where Rooms.id = FavoriteRooms.RoomId and  FavoriteRooms.UserId = :userID"
     )
-    fun getListOfFavorite(): LiveData<List<RoomItem>>
+    fun getListOfFavorite(userID: Int): LiveData<List<RoomItem>>
 
 
     //users

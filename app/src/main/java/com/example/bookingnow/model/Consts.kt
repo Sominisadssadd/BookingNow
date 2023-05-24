@@ -9,6 +9,7 @@ object Consts {
     const val REQUEST_CODE = 0
     const val ZERO_INT_FIELD = 0
     const val EMPTY_STRING_FIELD = ""
+    const val USER_ID_ARGUMENT = "user_id"
     const val ROOM_ITEM_ARGUMENT = "room_item"
     const val ROOM_DESCRIPTION_FRAGMENT = "Description_fragments"
 
