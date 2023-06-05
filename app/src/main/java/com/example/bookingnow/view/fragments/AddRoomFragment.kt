@@ -117,7 +117,8 @@ class AddRoomFragment : Fragment(), View.OnClickListener {
                     countOfRooms = count,
                     specialOfBooking = special,
                     imageTitle = imageUri[0],
-                    cost = cost
+                    cost = cost,
+                    isFavorite = false
                 )
                 viewModel.addRoom(RoomItem)
             }

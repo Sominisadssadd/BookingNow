@@ -33,7 +33,7 @@ abstract class RoomDataBase : RoomDatabase() {
 
         }
 
-        const val DATABASE_NAME = "MyDB"
+        const val DATABASE_NAME = "BNDB"
     }
 
 }

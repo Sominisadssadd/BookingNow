@@ -28,6 +28,8 @@ data class RoomItem(
     @ColumnInfo(name = "RoomType")
     val typeOfRoom: String,
     @ColumnInfo(name = "RoomCost")
-    val cost: String
+    val cost: String,
+    @ColumnInfo(name = "IsFavorite")
+    val isFavorite: Boolean
 
 ) : Serializable

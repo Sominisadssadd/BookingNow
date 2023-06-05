@@ -24,18 +24,33 @@ interface RoomDao {
     @Query("select * from Rooms group by id")
     fun getListOfItems(): LiveData<List<RoomItem>>
 
+
+    @Query("select * from Rooms group by id")
+    fun getListOfItemsList(): List<RoomItem>
+
     @Query("select * from Rooms where id > 3 limit 5")
-    fun getListOfTopItems(): LiveData<List<RoomItem>>
+    fun getListOfTopItems(): List<RoomItem>
+
+    @Query("select * from rooms where RoomName like :query ")
+    fun getListOfRoomsWithQuery(query: String): LiveData<List<RoomItem>>
 
     //favorite table
     @Insert(entity = FavoriteItem::class)
     fun addToFavorite(item: FavoriteItem)
 
-    @Delete(entity = FavoriteItem::class)
-    fun deleteFromFavorite(item: FavoriteItem)
+    @Query("delete from FavoriteRooms where UserId = :userID and RoomId  = :roomItemId")
+    fun deleteFromFavorite(userID: Int, roomItemId: Int)
+
+    @Query("select * from rooms inner join FavoriteRooms on rooms.id = FavoriteRooms.RoomId where RoomName like :query ")
+    fun getListOfFavoriteWithQuery(query: String): LiveData<List<RoomItem>>
+
+
+    //удалить все заметки текущего юзера
+    @Query("delete from FavoriteRooms where UserId = :userID")
+    fun deleteAllFromFavorite(userID: Int);
 
     @Query(
-        "select Rooms.id,RoomName,RoomImportantInfo,RoomDescription,RoomCount,RoomSpecial,RoomType,ImageTitle," +
+        "select Rooms.id,RoomName,RoomImportantInfo,RoomDescription,RoomCount,RoomSpecial,RoomType,ImageTitle, IsFavorite," +
                 "RoomCost from Rooms inner join FavoriteRooms where Rooms.id = FavoriteRooms.RoomId and  FavoriteRooms.UserId = :userID"
     )
     fun getListOfFavorite(userID: Int): LiveData<List<RoomItem>>
@@ -45,8 +60,14 @@ interface RoomDao {
     @Insert(entity = UserItem::class)
     fun registerUser(user: UserItem)
 
+    @Update(entity = UserItem::class)
+    fun updateUserInformation(user: UserItem)
+
     @Query("select * from Users")
     fun getListOfUsers(): LiveData<List<UserItem>>
+
+    @Query("select * from Users  where id = :userId")
+    fun getUserInformation(userId: Int): UserItem
 
 
     //RoomPhotoItem Table

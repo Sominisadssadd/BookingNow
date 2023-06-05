@@ -15,7 +15,11 @@
         android:id="@+id/favoriteFragment"
         android:name="com.example.bookingnow.view.fragments.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <action
+            android:id="@+id/action_favoriteFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.bookingnow.view.fragments.HistoryFragment"

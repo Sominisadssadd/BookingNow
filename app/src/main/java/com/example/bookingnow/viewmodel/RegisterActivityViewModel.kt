@@ -22,6 +22,16 @@ class RegisterActivityViewModel(application: Application) : AndroidViewModel(app
         listOfUsers = daoDB.getListOfUsers()
     }
 
+    fun updateUserInfo(user: UserItem) {
+        viewModelScope.launch(Dispatchers.IO) {
+            daoDB.updateUserInformation(user)
+        }
+    }
+
+    fun getUserInfo(userID: Int): UserItem {
+        return daoDB.getUserInformation(userID)
+    }
+
     fun userRegister(userItem: UserItem) {
         viewModelScope.launch(Dispatchers.IO) {
             daoDB.registerUser(userItem)
