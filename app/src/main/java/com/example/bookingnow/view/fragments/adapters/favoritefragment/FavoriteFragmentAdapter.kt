@@ -4,11 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.bookingnow.R
+import com.example.bookingnow.model.database.FavoriteItem
 import com.example.bookingnow.model.database.RoomItem
 import com.squareup.picasso.Picasso
 
 class FavoriteFragmentAdapter :
     ListAdapter<RoomItem, FavoriteViewHolder>(DiffUtilCallbackItemFavorite()) {
+
 
     var onItemClickListener: ((item: RoomItem) -> Unit)? = null
 
@@ -33,11 +35,7 @@ class FavoriteFragmentAdapter :
 
                 //Ошибка свзяанна с отказом доступа к внешнему хранилищу
                 Picasso.get().load(currentItem.imageTitle).into(imageView)
-
-
             }
-
-
         }
     }
 }

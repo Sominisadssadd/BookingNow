@@ -53,7 +53,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/SelectImageButton"
+
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_gravity="left|bottom"
@@ -64,6 +64,7 @@
                 app:cardCornerRadius="40dp">
 
                 <ImageView
+                    android:id="@+id/SelectImageButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -101,6 +102,7 @@
                 app:cardElevation="15dp">
 
                 <EditText
+                    android:id="@+id/editeTextChangeName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -126,6 +128,7 @@
                 app:cardElevation="15dp">
 
                 <EditText
+                    android:id="@+id/editeTextChangeEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|bottom"
@@ -153,6 +156,7 @@
                 app:cardElevation="15dp">
 
                 <EditText
+                    android:id="@+id/editeTextChangePhone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
@@ -178,6 +182,7 @@
                 app:cardElevation="15dp">
 
                 <EditText
+                    android:id="@+id/editeTextChangePassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
